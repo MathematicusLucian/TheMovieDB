@@ -6,6 +6,8 @@ export default class Model {
         this.MOVIEDB_API_NEW = `${this.BASE_URL}/movie/new?${this.API_KEY}&language=en-US&page=1`;
         this.moviesList = [];
         this.searchValue = '';
+        this.sortByValue = '';
+        this.filterByValue = '';
     }
 
     /* Bindings */
@@ -56,12 +58,33 @@ export default class Model {
         // catch - 3 hour constraint, otherwise
     }
 
-    /* Update Movies List */ 
+  /* Update Movies List */ 
 
-    updateSearchValue(searchField) {
-        this.searchValue = searchField;
-         // get moviesList to match filter dropdown
-        const url = this.getApiUrl(this.searchValue);
-        this.fetchMoviesList(url);
+  updateSearchValue(searchField) {
+    this.searchValue = searchField;
+    this.updateMoviesList();
+  }
+
+  updateSortByValue(sortByValue) {
+    this.sortByValue = sortByValue;
+    this.updateMoviesList();
+  }
+
+  updateFilterByValue(filterByValue, searchField) {
+    this.filterByValue = filterByValue;
+    this.searchField = searchField;
+    this.updateMoviesList();
+  }
+
+  updateMoviesList(){
+    // get moviesList to match filter dropdown
+    if (this.filterByValue === 'new') {
+      const url = this.getApiUrl('new');
+      this.fetchMoviesList(url);
     }
+    else {
+      const url = this.getApiUrl(this.searchValue);
+      this.fetchMoviesList(url);
+    }
+  }
 }

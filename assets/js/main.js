@@ -1,5 +1,5 @@
-import Model from './movies_list/model.js?v6';
-import View from './movies_list/view.js?v6';
+import Model from './movies_list/model.js?v7';
+import View from './movies_list/view.js?v7';
 
 class Controller {
   constructor(model, view) {
@@ -18,6 +18,13 @@ class Controller {
     const searchField = this.moviesListView.searchField.value;
     console.log('search field value: ', searchField);
     this.moviesListModel.updateSearchValue(searchField);
+  }
+
+  handleBySortByVote = e  => this.moviesListModel.updateSortByValue(e.target.value);
+
+  handleOnFilter = e => {
+    this.moviesListModel.updateFilterByValue(e.target.value, this.moviesListView.searchField);
+    this.moviesListView.updateMoviesListTypeHeader();
   }
 
   // Changes On Binding

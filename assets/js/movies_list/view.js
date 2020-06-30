@@ -4,7 +4,9 @@ export default class View {
         this.searchButton = document.getElementById("search_button");
         this.searchField = document.getElementById("search_field");
         this.moviesCount = document.getElementById("movies_count");
-        this.resultsList = document.getElementById("movies_list")
+        this.resultsList = document.getElementById("movies_list");
+        this.sortMoviesListBy = document.getElementById("sort_movieslist_by_vote");
+        this.filterMoviesListBy = document.getElementById("filter_movieslist_by");
     }
 
     /* Bindings */ 
@@ -53,6 +55,12 @@ export default class View {
     }
 
     /* Utils */
+
+    updateMoviesListTypeHeader() {
+        var heading = this.filterMoviesListBy.selectedOptions[0].label;
+        this.moviesListType.innerHTML = `<h3>${heading}</h3>`;
+    }
+
     renderResults(results) {
         this.moviesCount.innerHTML = `<h4>Showing ${results.length} movies</h4>`;
         this.resultsList.innerHTML = results.map(movie => this.setMovieHTML(movie));
