@@ -2,10 +2,9 @@ export default class Model {
     constructor() {
     this.BASE_URL = 'https://api.themoviedb.org/3';
     this.API_KEY = `api_key=99c7b3d80778633f81fca8eb499a0189`;
-    // last 3 months
     this.MOVIEDB_API_URL = `${this.BASE_URL}/search/movie?${this.API_KEY}&language=en-US&page=1`; 
-    // "new" can not mean last 3 months as such is the criteria of "all" :. "new" must mean upcoming?
-    this.MOVIEDB_API_NEW = `${this.BASE_URL}/movie/upcoming?${this.API_KEY}&language=en-US&page=1`;
+
+    // ideally would implement state management for the following variables
     this.moviesList = [];
     this.searchValue = '';
     this.sortByValue = '';
@@ -22,22 +21,21 @@ export default class Model {
 
   getApiUrl = searchFieldValue => {
     let url;
-
     if (searchFieldValue !== '') {
       url = `${this.MOVIEDB_API_URL}&query=${searchFieldValue}`
     }
-    else if (searchFieldValue === 'new') {
-      url = `${this.MOVIEDB_API_NEW}&query=${searchFieldValue}`
-    }
-
     return url;
+  }
+
+  getReleaseData(movie) {
+    const { release_date } = movie;
+    return release_date
   }
 
   /* Search Field */
 
   sortMoviesListBy(sortBy) {
     this.moviesList.sort((a, b) => b[sortBy] - a[sortBy]);
-    this.moviesListChangedOnBind(this.moviesList);
   }
 
   /* API Call */
@@ -49,11 +47,24 @@ export default class Model {
         this.moviesList = data.results;
         this.moviesListChangedOnBind(data);
 
-        // filter to show only favourites if the user selects such a filter
-        if (this.filterByValue === 'fav') {
+        // "new" being those released in the last 3 months and therefore not "upcoming"
+        if (this.filterByValue === 'new') {
+
+          const threeMonthsAgo = new Date();
+          console.log(threeMonthsAgo);
+          threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+          console.log(threeMonthsAgo);
+          // filter out anything before 3 months ago
+          this.moviesList = this.moviesList.filter(movie =>
+            new Date(this.getReleaseData(movie)) >= threeMonthsAgo);
+          console.log(this.moviesList); 
+
+        } else if (this.filterByValue === 'fav') {
+          
           const localFavouriteMovies = JSON.parse(localStorage['fav-movies-list']);
-          this.moviesList = this.moviesList.filter(movie => localFavouriteMovies.includes(movie.id));
-          this.moviesListChangedOnBind(this.moviesList);
+          // filter out anything not in the favourites local storage
+          this.moviesList = this.moviesList.filter(movie => localFavouriteMovies.includes(movie.id)); 
+        
         }
     
         // sort moviesList as per sort dropdown
@@ -62,8 +73,10 @@ export default class Model {
         } else {
           this.sortMoviesListBy('id');
         }
+
+        this.moviesListChangedOnBind(this.moviesList);
       })
-      // catch - 3 hour constraint, otherwise
+      // catch - time constraint, otherwise
   }
 
   /* Update Movies List */ 
@@ -86,13 +99,7 @@ export default class Model {
 
   updateMoviesList(){
     // get moviesList to match filter dropdown
-    if (this.filterByValue === 'new') {
-      const url = this.getApiUrl('new');
-      this.fetchMoviesList(url);
-    }
-    else {
-      const url = this.getApiUrl(this.searchValue);
-      this.fetchMoviesList(url);
-    }
+    const url = this.getApiUrl(this.searchValue);
+    this.fetchMoviesList(url);
   }
 }

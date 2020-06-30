@@ -10,7 +10,7 @@
 
 ## Notes
 
--	Filters: "new" can not mean last 3 months as such is the criteria of "all". Therefore, assumed "new" denotes upcoming movies that meet the search input field criteria.
+-	Filters: "new" being those released in the last 3 months and therefore not "upcoming".
 -	Favourites only shows "liked" movies that match the search criteria.
 -	Basic MVC design pattern. Frameworks, and modules such as Webpack, are not permitted.
 -	Due to the 3 hour limit, only basic unit testing has been implemented, and no end-to-end testing.
