@@ -2,8 +2,10 @@ export default class Model {
     constructor() {
     this.BASE_URL = 'https://api.themoviedb.org/3';
     this.API_KEY = `api_key=99c7b3d80778633f81fca8eb499a0189`;
-    this.MOVIEDB_API_URL = `${this.BASE_URL}/search/movie?${this.API_KEY}&language=en-US&page=1`; // last 3 months
-    this.MOVIEDB_API_NEW = `${this.BASE_URL}/movie/new?${this.API_KEY}&language=en-US&page=1`;
+    // last 3 months
+    this.MOVIEDB_API_URL = `${this.BASE_URL}/search/movie?${this.API_KEY}&language=en-US&page=1`; 
+    // "new" can not mean last 3 months as such is the criteria of "all" :. "new" must mean upcoming?
+    this.MOVIEDB_API_NEW = `${this.BASE_URL}/movie/upcoming?${this.API_KEY}&language=en-US&page=1`;
     this.moviesList = [];
     this.searchValue = '';
     this.sortByValue = '';
@@ -25,7 +27,7 @@ export default class Model {
       url = `${this.MOVIEDB_API_URL}&query=${searchFieldValue}`
     }
     else if (searchFieldValue === 'new') {
-      url = `${this.MOVIEDB_API_NEW}`
+      url = `${this.MOVIEDB_API_NEW}&query=${searchFieldValue}`
     }
 
     return url;
