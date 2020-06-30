@@ -13,6 +13,6 @@
 -	Filters: "new" being those released in the last 3 months and therefore not "upcoming".
 -	Favourites only shows "liked" movies that match the search criteria.
 -	Basic MVC design pattern. Frameworks, and modules such as Webpack, are not permitted.
--	Due to the 3 hour limit, only basic unit testing has been implemented, and no end-to-end testing.
+-	I am very passionate about unit testing, writing them before implementing code (and certainly before refactoring, TDD) but in the given 3 hour limit, it is impossible to write all the code required and also the tests.
 -	App utilises CSS, though SASS would be worth considering. The application is not fully responsive due to time constraints.
 -	With more time, documentation could be more verbose.
