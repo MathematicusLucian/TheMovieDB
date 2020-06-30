@@ -61,6 +61,11 @@ export default class View {
     }
 
     /* Getters and Setters */
+
+    getPosterUrl = movie =>
+    movie.poster_path
+        ? `${this.BASE_URL}${movie.poster_path}`
+        : 'http://via.placeholder.com/92x138.png?text=poster';
     
     setMovieHTML(movie) {
         const { id, overview, release_date, title } = movie
@@ -70,7 +75,7 @@ export default class View {
         const favouriteMovies = JSON.parse(localStorage['fav-movies-list']);
         const isFavMovie = favouriteMovies.includes(id);
         const movieDate = release_date.substring(0, 4);
-        const moviePosterPath = `${this.BASE_URL}${movie.poster_path}`;
+        const moviePosterPath = this.getPosterUrl(movie);
     
         const movieDescription =
             overview.length > DESC_LENGTH
