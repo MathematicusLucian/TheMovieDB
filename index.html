@@ -1,69 +1,73 @@
 <head>
-</head>
-
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Coding challenge">
+    <title>The Movie DB</title>
+    <link rel="stylesheet" href="/assets/css/styles.css?v8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  </head>
   
-  <header>
-    <div class="container">
-      <span class="header_logo"></span>
-    </div>
-  </header>
-
   <body>
-    <div class="container">
-
-      <div class="search"> 
-          
-        <h2>Find any movie</h2>
-
-        <div class="search_box">
-          <div class="search_box_content">
-            <input placeholder="Search movies..." id="search_field" type="text" />
-            <span id="search_button">Search</span>
+    
+    <header>
+      <div class="container">
+        <span class="header_logo"></span>
+      </div>
+    </header>
+  
+    <body>
+      <div class="container">
+  
+        <div class="search">
+  
+          <span id="body_tagline">
+            <h4>THE MOVIE DB</h4>
+          </span>
+          <h2>Find any movie</h2>
+  
+          <div class="search_box">
+            <div class="search_box_content">
+              <input placeholder="Search movies..." id="search_field" type="text" />
+              <span id="search_button"></span>
+            </div>
           </div>
+  
         </div>
-
+  
+        <div id="filters_and_sorting">
+  
+          <div class="filter">
+            <select id="sort_movieslist_by_vote">
+              <option value="">No sorting</option>
+              <option value="highest">Highest Rating</option>
+            </select>
+          </div>
+  
+          <div class="filter">
+            <select id="filter_movieslist_by">
+              <option value="">All movies</option>
+              <option value="fav">Favourites movies</option>
+              <option value="new">New movies</option>
+            </select>
+          </div>
+  
+        </div>
+  
+        <div id="movies_list_type"></div>
+        <div id="movies_count"></div>
+  
+        <ul id="movies_list"></ul>
+  
       </div>
-
-      <div id="filters_and_sorting">
-
-        <div class="filter">
-          <select id="sort_movieslist_by_vote">
-            <option value="">No sorting</option>
-            <option value="highest">Highest Rating</option>
-          </select>
-        </div>
-
-        <div class="filter">
-          <select id="filter_movieslist_by">
-            <option value="">All movies</option>
-            <option value="fav">Favourites movies</option>
-            <option value="new">New movies</option>
-          </select>
-        </div>
-
-      </div>
-
-      <div id="movies_list_type"></div>
-      <div id="movies_count"></div>
-
-      <ul id="movies_list">
-
-
-        <!-- results to appear here -->
-
-
-      </ul>
-
-    </div>
+    </body>
+    
+    <footer>
+      <div class="container"></div>
+    </footer>
+  
+    <script type="module" src="/assets/js/main.js?v12"></script>
+  
   </body>
   
-  <footer>
-    <div class="container"></div>
-  </footer> 
-
-  <script type="module" src="/assets/js/main.js?v6"></script>
-
-</body>
-
-</html>
+  </html>
