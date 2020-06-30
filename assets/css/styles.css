@@ -1,7 +1,20 @@
-body {
+/* Theme Variables */
+
+:root {
+    --header-bg-color: #081C24;
+    --header-header-color: #fff;
+    --header-tagline-color: #9AA4AE;
+    --body-bg-color: #22323D;
+    --green: #00AA60;
+  }
+  
+  /* Init */
+  
+  body {
+    background-color: var(--body-bg-color);
     margin: 0;
     padding: 0;
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
   }
 
   * {
@@ -30,3 +43,54 @@ body {
     color: var(--header-tagline-color);
     font-size: 11px;
 }
+
+/* Layout */
+
+.container {
+    max-width: 1200px;
+    padding: 0 22px;
+    margin: 0 auto;
+  }
+
+/* General */
+
+  button, select {
+    cursor: pointer;
+    border: 0;
+    border-radius: 8px;
+    padding: 10px 20px;
+    background-color: var(--green);
+    color: var(--header-header-color);
+    font-size: 14px;
+  }
+
+  input[type="text"] {
+    -webkit-appearance: none;
+    display: block;
+    border: 0;
+    width: 100%;
+    padding: 16px 50px 16px 19px;
+    border-radius: 20px;
+    background-color: #fff;
+    font-size: 14px;
+  }
+
+  svg {
+    cursor: pointer;
+    width: 32px;
+    margin-left: -50px;
+  }
+
+  /* Header */
+
+  header {
+    background-color: var(--header-bg-color);
+    padding: 10px 0;
+  }
+
+  .header_logo {
+    display: block; 
+    height: 80px; 
+    margin: 12px calc(50% - 50px) 0px calc(50% - 50px);
+    background: url('./../imgs/logo.svg') no-repeat;  /* Need image */
+  }
