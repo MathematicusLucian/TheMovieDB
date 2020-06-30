@@ -1,5 +1,5 @@
-import Model from './movies_list/model.js?v5';
-import View from './movies_list/view.js?v5';
+import Model from './movies_list/model.js?v6';
+import View from './movies_list/view.js?v6';
 
 class Controller {
   constructor(model, view) {
@@ -8,7 +8,7 @@ class Controller {
 
     // Bindings
     this.moviesListView.bindSubmit(this.handleSubmit);
-
+    this.moviesListModel.bindMoviesListChanged(this.moviesListChangedOnBind);
   }
 
   // Handlers 
@@ -20,6 +20,8 @@ class Controller {
     this.moviesListModel.updateSearchValue(searchField);
   }
 
+  // Changes On Binding
+  moviesListChangedOnBind = () => this.moviesListView.renderResults(this.moviesListModel.moviesList);
 }
 
 const App = new Controller(new Model(), new View())
