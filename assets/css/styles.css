@@ -94,3 +94,75 @@
     margin: 12px calc(50% - 50px) 0px calc(50% - 50px);
     background: url('./../imgs/logo.svg') no-repeat;  /* Need image */
   }
+
+  /* Search Box */
+  
+    h2 {
+      margin-bottom: 30px;
+    }
+  
+    .search {
+      width: 500px;
+      margin: 20px auto;
+    }
+  
+    .search_box {
+      display: flex;
+      justify-content: center;
+    }
+  
+    .search_box_content {
+      width: 80%;
+      display: flex;
+    }
+  
+    .search_box_content #search_button {
+      cursor: pointer;
+      height: 30px;
+      width: 30px;
+      background: url('./../imgs/search_icon.svg?v4') no-repeat; 
+      margin-top: 12px;
+      margin-left: -50px;
+    }
+
+  /* Movies List Head and Filters */
+
+  li {
+    display: flex;
+    height: 138px;
+    padding: 0 40px 0 0;
+    background-color: var(--list-item-bg-color);
+    color: var(--header-h1-color);
+    list-style-type: none;
+  }
+
+  h3 {
+    margin: 0 0 10px 0;
+  }
+
+  h3 span {
+    color: var(--list-item-text-color);
+  }
+
+  #movies_count h4 {
+    justify-content: left; 
+    padding-left: 0;
+    margin-bottom: 12px; 
+    font-size: 13px;
+  }
+
+  #filters_and_sorting {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 18px;
+  }
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 52px;
+    margin-left: 18px;
+    background: var(--green) url('./../imgs/arrow-down.svg') 90% / 15% no-repeat;
+    background-size: 30px 30px;
+  }
