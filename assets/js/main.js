@@ -16,11 +16,15 @@ class Controller {
 
   // Handlers 
 
-
   handleSubmit = e => {
     const searchField = this.moviesListView.searchField.value;
     console.log('search field value: ', searchField);
-    this.moviesListModel.updateSearchValue(searchField);
+    if(searchField !== '') {
+      this.moviesListModel.updateSearchValue(searchField);
+      this.moviesListView.updateMoviesListTypeHeader();
+    } else {
+      this.moviesListView.renderError();
+    }
   }
 
   handleBySortByVote = e  => this.moviesListModel.updateSortByValue(e.target.value);

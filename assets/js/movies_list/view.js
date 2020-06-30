@@ -114,4 +114,8 @@ export default class View {
 
     updateLocalStorage = movies =>
         localStorage.setItem('fav-movies-list', JSON.stringify(movies));
+
+    renderError(){
+        this.resultsList.innerHTML = '<h2>Please enter a search query . . .</h2>';
+    }
 }
