@@ -51,13 +51,9 @@ export default class Model {
         if (this.filterByValue === 'new') {
 
           const threeMonthsAgo = new Date();
-          console.log(threeMonthsAgo);
           threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
-          console.log(threeMonthsAgo);
           // filter out anything before 3 months ago
-          this.moviesList = this.moviesList.filter(movie =>
-            new Date(this.getReleaseData(movie)) >= threeMonthsAgo);
-          console.log(this.moviesList); 
+          this.moviesList = this.moviesList.filter(movie => new Date(this.getReleaseData(movie)) >= threeMonthsAgo);
 
         } else if (this.filterByValue === 'fav') {
           

@@ -27,14 +27,10 @@ export default class View {
   
       resultsList.addEventListener('click', e => {
   
-        console.log(e.target.dataset.id);
-  
         if (e.target && e.target.className.includes('fav_icon')) {
   
           const id = parseInt(e.target.dataset.id);
           const isFavMovie = favouriteMovies.includes(id); 
-  
-          console.log('id ', id);
   
           if (!isFavMovie) {
   
