@@ -1,66 +1,68 @@
 export default class Model {
     constructor() {
-        this.BASE_URL = 'https://api.themoviedb.org/3';
-        this.API_KEY = `api_key=99c7b3d80778633f81fca8eb499a0189`;
-        this.MOVIEDB_API_URL = `${this.BASE_URL}/search/movie?${this.API_KEY}&language=en-US&page=1`; // last 3 months
-        this.MOVIEDB_API_NEW = `${this.BASE_URL}/movie/new?${this.API_KEY}&language=en-US&page=1`;
-        this.moviesList = [];
-        this.searchValue = '';
-        this.sortByValue = '';
-        this.filterByValue = '';
-    }
+    this.BASE_URL = 'https://api.themoviedb.org/3';
+    this.API_KEY = `api_key=99c7b3d80778633f81fca8eb499a0189`;
+    this.MOVIEDB_API_URL = `${this.BASE_URL}/search/movie?${this.API_KEY}&language=en-US&page=1`; // last 3 months
+    this.MOVIEDB_API_NEW = `${this.BASE_URL}/movie/new?${this.API_KEY}&language=en-US&page=1`;
+    this.moviesList = [];
+    this.searchValue = '';
+    this.sortByValue = '';
+    this.filterByValue = '';
+  }
 
-    /* Bindings */
-  
-    bindMoviesListChanged(callback) {
-      this.moviesListChangedOnBind = callback;
-    }
+  /* Bindings */
+
+  bindMoviesListChanged(callback) {
+    this.moviesListChangedOnBind = callback;
+  }
     
-    /* Getters & Setters */
-  
-    getApiUrl = searchFieldValue => {
-      return `${this.MOVIEDB_API_URL}&query=${searchFieldValue}`;
+  /* Getters & Setters */
+
+  getApiUrl = searchFieldValue => {
+    let url;
+
+    if (searchFieldValue !== '') {
+      url = `${this.MOVIEDB_API_URL}&query=${searchFieldValue}`
+    }
+    else if (searchFieldValue === 'new') {
+      url = `${this.MOVIEDB_API_NEW}`
     }
 
-    /* AB Sorting */
-  
-    sortMoviesListBy(sortBy) {
-      this.moviesList.sort((a, b) => b[sortBy] - a[sortBy]);
-      this.moviesListChangedOnBind(this.moviesList);
-    }
+    return url;
+  }
 
-    /* API Call */
-  
-    fetchMoviesList(url) {
-      fetch(url)
-        .then((response) => response.json())
-        .then(data => {
-          this.moviesList = data.results;
+  /* Search Field */
 
-          console.log(this.moviesList);
+  sortMoviesListBy(sortBy) {
+    this.moviesList.sort((a, b) => b[sortBy] - a[sortBy]);
+    this.moviesListChangedOnBind(this.moviesList);
+  }
 
-          console.log(this.filterByValue);
+  /* API Call */
 
-          console.log(this.sortByValue);
+  fetchMoviesList(url) {
+    fetch(url)
+      .then((response) => response.json())
+      .then(data => {
+        this.moviesList = data.results;
+        this.moviesListChangedOnBind(data);
 
-          this.moviesListChangedOnBind(data);
-  
-          // filter to show only favourites if the user selects such a filter
-          if (this.filterByValue === 'fav') {
-            const localFavouriteMovies = JSON.parse(localStorage['fav-movies-list']);
-            this.moviesList = this.moviesList.filter(movie => localFavouriteMovies.includes(movie.id));
-            this.moviesListChangedOnBind(this.moviesList);
-          }
-      
-          // sort moviesList as per sort dropdown
-          if (this.sortByValue === 'highest') {
-            this.sortMoviesListBy('vote_count');
-          } else {
-            this.sortMoviesListBy('id');
-          }
-        })
-        // catch - 3 hour constraint, otherwise
-    }
+        // filter to show only favourites if the user selects such a filter
+        if (this.filterByValue === 'fav') {
+          const localFavouriteMovies = JSON.parse(localStorage['fav-movies-list']);
+          this.moviesList = this.moviesList.filter(movie => localFavouriteMovies.includes(movie.id));
+          this.moviesListChangedOnBind(this.moviesList);
+        }
+    
+        // sort moviesList as per sort dropdown
+        if (this.sortByValue === 'highest') {
+          this.sortMoviesListBy('vote_count');
+        } else {
+          this.sortMoviesListBy('id');
+        }
+      })
+      // catch - 3 hour constraint, otherwise
+  }
 
   /* Update Movies List */ 
 

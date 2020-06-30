@@ -1,5 +1,5 @@
-import Model from './movies_list/model.js?v10';
-import View from './movies_list/view.js?v11';
+import Model from './movies_list/model.js?12';
+import View from './movies_list/view.js?12';
 
 class Controller {
   constructor(model, view) {
