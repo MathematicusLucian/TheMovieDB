@@ -12,7 +12,13 @@ export default class View {
     /* Bindings */ 
   
     bindSubmit = handler =>
-        this.searchButton.addEventListener('click', e => handler(e));
+        this.searchButton.addEventListener('click', e => handler(e)); 
+    
+    bindOnSortDropdown = handler =>
+        this.sortMoviesListBy.addEventListener('change', e => handler(e));
+    
+    bindOnFilterDropdown = handler =>
+        this.filterMoviesListBy.addEventListener('change', e => handler(e));
 
     /* Getters and Setters */
     

@@ -39,6 +39,10 @@ export default class Model {
 
           console.log(this.moviesList);
 
+          console.log(this.filterByValue);
+
+          console.log(this.sortByValue);
+
           this.moviesListChangedOnBind(data);
   
           // filter to show only favourites if the user selects such a filter

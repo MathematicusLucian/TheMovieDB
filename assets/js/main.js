@@ -1,5 +1,5 @@
-import Model from './movies_list/model.js?v7';
-import View from './movies_list/view.js?v7';
+import Model from './movies_list/model.js?v8';
+import View from './movies_list/view.js?v9';
 
 class Controller {
   constructor(model, view) {
@@ -8,6 +8,8 @@ class Controller {
 
     // Bindings
     this.moviesListView.bindSubmit(this.handleSubmit);
+    this.moviesListView.bindOnFilterDropdown(this.handleOnFilter);
+    this.moviesListView.bindOnSortDropdown(this.handleBySortByVote);
     this.moviesListModel.bindMoviesListChanged(this.moviesListChangedOnBind);
   }
 
