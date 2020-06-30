@@ -16,7 +16,7 @@
     "mocha": "^7.1.0"
   },
   "scripts": {
-    "test": "mocha --require @babel/polyfill --require @babel/register './test/*.js'",
+    "test": "mocha --require @babel/polyfill --require @babel/register './tests/*.js'",
     "server": "http-server"
   },
   "repository": {
