@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto';
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  h1, h2, h3, h4 {
+    color: var(--header-header-color);
+  }
+
+  h1, h2 {
+    margin: 0;
+    text-align: center;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  h4 {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    margin: 0;
+    color: var(--header-tagline-color);
+    font-size: 11px;
+}
