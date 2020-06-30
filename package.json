@@ -1,0 +1,33 @@
+{
+  "name": "TheMovieDB",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/register": "^7.8.6"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.8.7",
+    "chai": "^4.2.0",
+    "http-server": "^0.12.3",
+    "mocha": "^7.1.0"
+  },
+  "scripts": {
+    "test": "mocha --require @babel/polyfill --require @babel/register './test/*.js'",
+    "server": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k1n4kut4/TheMovieDB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/k1n4kut4/TheMovieDB/issues"
+  },
+  "homepage": "https://github.com/k1n4kut4/TheMovieDB#readme"
+}
